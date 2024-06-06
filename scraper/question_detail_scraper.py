@@ -1,48 +1,67 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
-from tqdm import tqdm
+import requests
 import pandas as pd
+from bs4 import BeautifulSoup
+from tqdm import tqdm
+import time
+import os
+
+
+## stack API Creds
+STACK_API_ENDPOINT = "https://api.stackexchange.com/2.3/questions"
+API_KEY = os.environ['STACK_API_KEY']
+SITE = "scifi"
 
 
 if __name__ == "__main__":
-    question_data = []
-    chrome_options = webdriver.ChromeOptions() # chrome options
-    chrome_options.add_argument("--headless") # run in background
-    chrome_options.add_argument("--window-size=1920,1080") # render full screen
-    chrome_options.add_argument('log-level=3') # suppress verbose log messages
+    qdf = pd.read_csv("data/question_urls.csv")
+    question_urls = qdf["url"].to_list()  # convert urls to iterable list
 
-    df = pd.read_csv("data/question_urls.csv")
-    question_urls = df["url"].to_list() # convert urls to iterable list
-    
-    # fetch details from each url
-    for question_url in tqdm(question_urls[:4]):
-        print(f"Scraping -> {question_url}")
-        driver = webdriver.Chrome(options=chrome_options) # initialize driver
-        driver.get(question_url)
+    # Load existing data from the CSV file
+    if os.path.exists("data/question_details.csv"):
+        df = pd.read_csv("data/question_details.csv")
+        question_data = df.to_dict(orient="records")
+        last_processed_index = len(question_data)
+    else:
+        question_data = []
+        last_processed_index = 0
 
-        try:
-            # scrape elements
-            title = driver.find_element(By.ID, "question-header").text.split('\n')[0]
-            description = driver.find_element(By.CLASS_NAME, "s-prose.js-post-body").text
-            tags = [tag.text for tag in driver.find_element(By.CLASS_NAME, "post-taglist").find_elements(By.TAG_NAME, "li")]
+    for i in tqdm(range(last_processed_index, len(question_urls))):
+        question_url = question_urls[i]
 
-            # append to data list
+        # Extract the question ID from the URL
+        question_id = question_url.split("/")[-2]
+
+        api_endpoint = f"{STACK_API_ENDPOINT}/{question_id}"
+        params = {
+            "filter": "withbody",
+            "key": API_KEY,
+            "site": SITE,
+        }
+
+        # Make a GET request to the API
+        response = requests.get(api_endpoint, params=params)
+        data = response.json()
+
+        if "items" in data:
+            item = data["items"][0]
+            title = item["title"]
+            body = BeautifulSoup(item["body"], "html.parser").get_text()
+            tags = item["tags"]
+
+            # Append to data list
             question_data.append({
                 "title": title,
                 "url": question_url,
-                "description": description,
+                "description": body,
                 "tags": tags
             })
 
-            # save the dataframe to csv
+            # Save the dataframe to CSV
             df = pd.DataFrame(data=question_data, columns=question_data[0].keys())
             df.to_csv("data/question_details.csv", index=False)
+            time.sleep(1)
 
-        except NoSuchElementException:
-            continue
-
-        finally:
-            # exit the driver
-            driver.quit()
-    
+        # Check remaining quota of the day
+        if "quota_remaining" in data and data["quota_remaining"] == 0:
+            print(f"Quota limit reached. Processed {i+1} out of {len(question_urls)} URLs.")
+            break  # max API request limit (10K) reached
