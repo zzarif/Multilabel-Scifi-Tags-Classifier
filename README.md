@@ -4,7 +4,7 @@ Classify relevant tags from StackExchange Scifi questions.
 ## Build from Source
 1. Clone the repo
 ```bash
-git clone https://github.com/zzarif/Industry-Market-Cap-Analysis.git
+git clone https://github.com/zzarif/StackExchange-Scifi-Tags-Classifier.git
 ```
 2. Initialize and activate virtual environment
 ```bash
@@ -21,17 +21,19 @@ pip install -r requirements.txt
 ```bash
 python scraper/question_url_scraper.py
 ```
-This will generate [question_urls.csv](data/question_urls.csv) file. This file has 30,000 StackExchange Scifi question URLs.
+This will generate [question_urls.csv](data/question_urls.csv) file. This file has **30,000** StackExchange Scifi question URLs.
 
-## Fetch Question Details via [Stack API](https://api.stackexchange.com/)
-Now that we have 30K Scifi questions, we need to fetch the details (description, tags, etc.) for each of the questions. For that, we will request REST APIs provided by StackExchange for this purpose. To do so:
+## Fetch Question Details
+### Method 1: Fetch question details via [Stack API](https://api.stackexchange.com/)
+Now that we have **30,000** Scifi question URLs, we need to fetch the details (description, tags, etc.) for each of the questions. For that, we will utilize StackExchange REST APIs for this purpose. To do so:
 1. Register your v2.0 application at [Stackapps](https://stackapps.com/apps/oauth/register) to get an API key.
-2. Now, `deactivate` your active virtual environment.
+2. `deactivate` your active virtual environment.
 3. Open your `venv/Scripts/activate` file and add this line at the end of file:
 ```bash
 export STACK_API_KEY="<your_api_key>"
 ```
 *Copy the API key from Stackapps and paste it in this line.*
+
 4. Activate the virtual environment again:
 ```bash
 source venv/Scripts/activate
@@ -40,5 +42,8 @@ source venv/Scripts/activate
 ```bash
 python scraper/question_detail_scraper.py
 ```
-This will generate [question_details.csv](data/question_details.csv) file. It has the details (title, url, description, tags) of 30,000 scifi and fantasy questions from StackExchange.
+This will generate [question_details.csv](data/question_details.csv) file. It has the details (title, url, description, tags) of **30,000** scifi and fantasy questions from StackExchange.
+
 *Registering an app gives us an API key which allows us to make 10,000 requests per day to Stack API. Here, we added this API key as an environment variable.*
+
+### Method 2: Fetch question details via Selenium Scraper
