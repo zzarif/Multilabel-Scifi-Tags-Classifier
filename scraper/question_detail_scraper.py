@@ -1,67 +1,72 @@
-import requests
+import multiprocessing
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 import pandas as pd
-from bs4 import BeautifulSoup
 from tqdm import tqdm
 import time
-import os
 
+def scrape_question(question_url):
+    chrome_options = webdriver.ChromeOptions()  # chrome options
+    chrome_options.add_argument("--headless")  # run in background
+    chrome_options.add_argument("--window-size=1920,1080")  # render full screen
+    chrome_options.add_argument('log-level=3')  # suppress verbose log messages
 
-## stack API Creds
-STACK_API_ENDPOINT = "https://api.stackexchange.com/2.3/questions"
-API_KEY = os.environ['STACK_API_KEY']
-SITE = "scifi"
+    driver = webdriver.Chrome(options=chrome_options)  # initialize driver
+    driver.get(question_url)
 
+    try:
+        # scrape elements
+        title = driver.find_element(By.ID, "question-header").text.split('\n')[0]
+        description = driver.find_element(By.CLASS_NAME, "s-prose.js-post-body").text
+        tags = [tag.text for tag in driver.find_element(By.CLASS_NAME, "post-taglist").find_elements(By.TAG_NAME, "li")]
 
-if __name__ == "__main__":
-    qdf = pd.read_csv("data/question_urls.csv")
-    question_urls = qdf["url"].to_list()  # convert urls to iterable list
-
-    # Load existing data from the CSV file
-    if os.path.exists("data/question_details.csv"):
-        df = pd.read_csv("data/question_details.csv")
-        question_data = df.to_dict(orient="records")
-        last_processed_index = len(question_data)
-    else:
-        question_data = []
-        last_processed_index = 0
-
-    for i in tqdm(range(last_processed_index, len(question_urls))):
-        question_url = question_urls[i]
-
-        # Extract the question ID from the URL
-        question_id = question_url.split("/")[-2]
-
-        api_endpoint = f"{STACK_API_ENDPOINT}/{question_id}"
-        params = {
-            "filter": "withbody",
-            "key": API_KEY,
-            "site": SITE,
+        # return the scraped data
+        return {
+            "title": title,
+            "url": question_url,
+            "description": description,
+            "tags": tags
         }
 
-        # Make a GET request to the API
-        response = requests.get(api_endpoint, params=params)
-        data = response.json()
+    except (NoSuchElementException, TimeoutException) as e:
+        print(f"Error occurred while scraping {question_url}: {str(e)}")
+        return None
 
-        if "items" in data:
-            item = data["items"][0]
-            title = item["title"]
-            body = BeautifulSoup(item["body"], "html.parser").get_text()
-            tags = item["tags"]
+    finally:
+        # exit the driver
+        driver.quit()
+        time.sleep(5)
 
-            # Append to data list
-            question_data.append({
-                "title": title,
-                "url": question_url,
-                "description": body,
-                "tags": tags
-            })
+def scrape_chunk(chunk, chunk_id):
+    question_data = []
+    for question_url in tqdm(chunk, desc=f"Chunk {chunk_id}"):
+        data = scrape_question(question_url)
+        if data:
+            question_data.append(data)
 
-            # Save the dataframe to CSV
-            df = pd.DataFrame(data=question_data, columns=question_data[0].keys())
-            df.to_csv("data/question_details.csv", index=False)
-            time.sleep(1)
+    # save the dataframe to csv for the current chunk
+    df = pd.DataFrame(data=question_data, columns=question_data[0].keys())
+    df.to_csv(f"data/question_details_chunk{chunk_id}.csv", index=False)
 
-        # Check remaining quota of the day
-        if "quota_remaining" in data and data["quota_remaining"] == 0:
-            print(f"Quota limit reached. Processed {i+1} out of {len(question_urls)} URLs.")
-            break  # max API request limit (10K) reached
+if __name__ == "__main__":
+    df = pd.read_csv("data/question_urls.csv")
+    question_urls = df["url"].to_list()  # convert urls to iterable list
+
+    num_processes = multiprocessing.cpu_count()  # get the number of CPU cores
+    chunk_size = len(question_urls) // num_processes  # calculate the chunk size
+
+    # divide the question_urls into chunks
+    chunks = [question_urls[i:i + chunk_size] for i in range(0, len(question_urls), chunk_size)]
+
+    # create a process for each chunk
+    processes = []
+    for i, chunk in enumerate(chunks):
+        process = multiprocessing.Process(target=scrape_chunk, args=(chunk, i))
+        processes.append(process)
+        process.start()
+
+    # wait for all processes to finish
+    for process in processes:
+        process.join()
