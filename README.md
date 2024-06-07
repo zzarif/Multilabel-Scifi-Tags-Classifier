@@ -27,7 +27,7 @@ Wait for the script to finish (might take a few hours depending on your network 
 Fetching details from **30,000** question URLs is a rather resource intensive task. To efficiently fetch the details we can either request the question details via Stack API (recommended) or we can scrape the details with selenium scraper. (There are other ways too as mentioned [here](https://stackoverflow.com/a/40017359/23817375).)
 
 ### Method 1: Request question details via [Stack API](https://api.stackexchange.com/)
-This method explains Now that we have **30,000** Scifi question URLs, we need to fetch the details (description, tags, etc.) for each of the questions. For that, we will utilize StackExchange REST APIs for this purpose. To do so:
+This method explains how we can utilize StackExchange REST APIs to request **30,000** question details. To do so:
 1. Register your v2.0 application at [Stackapps](https://stackapps.com/apps/oauth/register) to get an API key.
 2. `deactivate` your active virtual environment.
 3. Open your `venv/Scripts/activate` file and add this line at the end of file (replace `<your_api_key>` with the API key from Stackapps):
