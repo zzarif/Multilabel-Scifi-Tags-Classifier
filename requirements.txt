@@ -1,0 +1,8 @@
+pandas==2.2.2
+selenium==4.21.0
+tqdm==4.66.4
+bs4==0.0.2
+gradio==3.50.0
+onnxruntime==1.18.0
+torch==1.13.1
+transformers==4.41.2
