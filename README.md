@@ -1,5 +1,24 @@
 # StackExchange Scifi Tags Classifier
-Classify relevant tags from StackExchange Scifi questions.
+A multi label text classification model from data collection, model training and deployment. The model can classify **160** different types of question tags from https://scifi.stackexchange.com. The keys of [tag_types_encoded.json](deployment/tag_types_encoded.json) shows the list of question tags.
+
+## Data Collection
+Data was collected from https://scifi.stackexchange.com/questions, a part of the Stack Exchange network of Q&A sites dedicated to science fiction and fantasy topics. Some popular question tags include Star Wars, Harry Potter, Marvel, DC Comics, Star Trek, Lord of the Rings, and Game of Thrones. The data collection was divided into two steps:
+1. **Question URL Scraping:** The scifi question URLs were scraped with [question_url_scraper.py](scraper/question_url_scraper.py) and the URLs are stored along with the question titles in [question_urls.csv](data/question_urls.csv) file.
+2. **Fetching Question Details:** For each of the question URL in [question_urls.csv](data/question_urls.csv), we fetch the question details (title, URL, description, tags) via Stack API. Alternatively, [question_detail_scraper.py](scraper/question_detail_scraper.py) could be used to scrape the question details. The question details are stored in [question_details.csv](data/question_details.csv) file.
+
+In total, **30,000** scifi question details were collected.
+
+## Data Preprocessing
+Initially, there were 2095 different question tags in the dataset. After analyzing, it was found that 1935 of them were rare tags (tags that appeared in less than 0.2% of the questions). So, the rare tags along were removed. As a result, a very small portion of the questions were void of any tag at all. So those question rows were removed as well. Finally, the dataset had **160** different tags across **27,493** questions.
+
+## Model Training
+Finetuned a `distilroberta-base` model from HuggingFace Transformers using Fastai and Blurr. The model training notebook can be viewed here.
+
+## Model Compression and ONNX Inference
+The trained model has a memory of 300+MB. So, the model was compressed using ONNX quantization and brought it under 80MB.
+
+## Model Deployment
+The compressed model was deployed to HuggingFace Spaces Gradio App. The implementation can be found in [deployment](deployment) folder or here.
 
 ## Build from Source
 1. Clone the repo
