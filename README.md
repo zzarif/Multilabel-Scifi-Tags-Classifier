@@ -39,7 +39,7 @@ export STACK_API_KEY="<your_api_key>"
 ```bash
 source venv/Scripts/activate
 ```
-5. Now, run the question detail scraper:
+5. Now, fetch the question details via Stack API:
 ```bash
 python stackapi/fetch_question_detail.py
 ```
