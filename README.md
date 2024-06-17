@@ -9,7 +9,7 @@ Data was collected from https://scifi.stackexchange.com/questions, a part of the
 In total, **30,000** scifi question details were collected.
 
 ## Data Preprocessing
-Initially, there were 2095 different question tags in the dataset. After analyzing, it was found that 1935 of them were rare tags (tags that appeared in less than 0.2% of the questions). So, the rare tags along were removed. As a result, a very small portion of the questions were void of any tag at all. So those question rows were removed as well. Finally, the dataset had **160** different tags across **27,493** questions.
+Initially, there were 2095 different question tags in the dataset. After analyzing, it was found that 1935 of them were rare tags (tags that appeared in less than 0.2% of the questions). So, the rare tags were removed. As a result, a very small portion of the questions were void of any tag at all. So those question rows were removed as well. Finally, the dataset had **160** different tags across **27,493** questions.
 
 ## Model Training
 Finetuned a `distilroberta-base` model from HuggingFace Transformers using Fastai and Blurr. The model training notebook can be viewed [here](notebooks/distilroberta-base/).
