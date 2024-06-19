@@ -1,41 +1,13 @@
-<html>
-
-<head>
-    <style>
-        .head {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            height: 5ch;
-        }
-
-        .center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 50vh;
-            font-size: 25px;
-        }
-
-        #text {
-            height: 100px;
-            width: 500px;
-            font-size: 20px;
-        }
-    </style>
-    <div class="head"><b>StackExchange Scifi Tags Classifier</b></div>
-</head>
-
-<body>
-    <div class="center">
-        <div style="height: 100px; width: 1000px;">
-            <label for="text"><b>Input Text</b></label> <br />
-            {{ input_text }} <br /> <br />
-            <label for="text"><b>Genres</b></label> <br />
-            {{ output_text }}
-        </div>
-    </div>
-</body>
-
-</html>
+{% extends 'base.html' %} {% block title %}Results{% endblock %} {% block
+content %}
+<h1>StackExchange Scifi Tags Classifier</h1>
+<div>
+  <label for="text">Question Asked</label> <br />
+  <textarea id="text" name="text" disabled>{{ input_text }}</textarea> <br />
+  <br />
+  <label for="text">Classified Tags</label> <br />
+  {% for label in labels %}
+  <button class="button-24" role="button">{{ label }}</button>
+  {% endfor %}
+</div>
+{% endblock %}
