@@ -3,33 +3,53 @@
   <head>
     <title>{% block title %}{% endblock %}</title>
     <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
-    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script
+      defer
+      src="{{ url_for('static', filename='js/script.js') }}"
+    ></script>
   </head>
   <body>
     <header class="header">
-      <a href="#" class="logo">Logo</a>
+      <a href="https://scifi.stackexchange.com/" class="logo" target="_blank"
+        ><img src="https://cdn.sstatic.net/Sites/scifi/Img/logo.svg"
+      /></a>
 
       <nav class="navbar">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Portfolio</a>
-        <a href="#">Services</a>
-        <a href="#">contacts</a>
+        <a href="https://zzarif.github.io" target="_blank">
+          <i class="fa-solid fa-globe"></i>
+        </a>
+
+        <a href="https://zibranzarif.hashnode.dev/" target="_blank">
+          <i class="fa-brands fa-hashnode"></i>
+        </a>
+        
+        <a href="https://github.com/zzarif" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+
+        <a href="https://www.linkedin.com/in/zibran-zarif-amio-b82717263/" target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+
+        <a href="mailto:zibran.zarif.amio@gmail.com" target="_blank">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+        
+
       </nav>
-      
     </header>
 
-    <div class="center_glass">
-      {% block content %} {% endblock %}
-    </div>
+    <div class="center_glass">{% block content %} {% endblock %}</div>
 
     <footer>
       <!-- Add footer content -->
     </footer>
-
-    
   </body>
 </html>

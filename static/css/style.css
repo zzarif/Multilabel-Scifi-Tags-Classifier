@@ -9,7 +9,10 @@
 
 body {
   min-height: 100vh;
-  background: url("../image/bg_space.png") no-repeat;
+  background: url("https://images6.alphacoders.com/135/thumb-1920-1354181.jpeg") no-repeat;
+  /* background: url("https://images3.alphacoders.com/910/thumb-1920-910923.png") no-repeat; */
+  /* background: url("https://images3.alphacoders.com/132/thumb-1920-1328680.png") no-repeat; */
+  /* background: url("https://images6.alphacoders.com/129/thumb-1920-1295574.png") no-repeat; */
   background-size: cover;
   background-position: center;
 }
@@ -53,7 +56,12 @@ body {
   font-size: 25px;
   text-decoration: none;
   font-weight: 600;
-  cursor: default;
+  cursor: pointer;
+}
+
+.logo img {
+  width: 250px;
+  margin-bottom: -10px;
 }
 
 .navbar a {
@@ -102,7 +110,7 @@ body {
   margin: 10px 0 10px 0;
 }
 
-.center_glass div textarea {
+.center_glass div form textarea {
   width: 100%;
   min-height: 150px;
   padding: 12px 20px;

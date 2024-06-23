@@ -2,10 +2,10 @@
 content %}
 <h1>StackExchange Scifi Tags Classifier</h1>
 <div>
-  <label for="text">Question Asked</label> <br />
-  <textarea id="text" name="text" disabled>{{ input_text }}</textarea> <br />
+  <label for="text"><b>Question Asked</b></label> <br />
+  <label >{{ input_text }}</label> <br />
   <br />
-  <label for="text">Classified Tags</label> <br />
+  <label for="text"><b>Classified Tags</b></label> <br />
   {% for label in labels %}
   <button class="button-24" role="button">{{ label }}</button>
   {% endfor %}
