@@ -7,17 +7,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-body {
-  min-height: 100vh;
-  background: url("https://ik.imagekit.io/zzarif/space.jpeg") no-repeat;
-  /* background: url("https://images6.alphacoders.com/135/thumb-1920-1354181.jpeg") no-repeat; */
-  /* background: url("https://images3.alphacoders.com/910/thumb-1920-910923.png") no-repeat; */
-  /* background: url("https://images3.alphacoders.com/132/thumb-1920-1328680.png") no-repeat; */
-  /* background: url("https://images6.alphacoders.com/129/thumb-1920-1295574.png") no-repeat; */
-  background-size: cover;
-  background-position: center;
-}
-
 .header {
   position: fixed;
   top: 0;

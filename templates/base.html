@@ -10,6 +10,15 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
+    <style>
+      body {
+        min-height: 100vh;
+        background: url("{{ url_for('static', filename='images/background.jpeg') }}")
+          no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    </style>
     <script
       defer
       src="{{ url_for('static', filename='js/script.js') }}"
@@ -29,20 +38,21 @@
         <a href="https://zibranzarif.hashnode.dev/" target="_blank">
           <i class="fa-brands fa-hashnode"></i>
         </a>
-        
+
         <a href="https://github.com/zzarif" target="_blank">
           <i class="fa-brands fa-github"></i>
         </a>
 
-        <a href="https://www.linkedin.com/in/zibran-zarif-amio-b82717263/" target="_blank">
+        <a
+          href="https://www.linkedin.com/in/zibran-zarif-amio-b82717263/"
+          target="_blank"
+        >
           <i class="fa-brands fa-linkedin"></i>
         </a>
 
         <a href="mailto:zibran.zarif.amio@gmail.com" target="_blank">
           <i class="fa-regular fa-envelope"></i>
         </a>
-        
-
       </nav>
     </header>
 
