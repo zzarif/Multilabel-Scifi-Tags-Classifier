@@ -23,7 +23,15 @@ The compressed model was deployed to HuggingFace Spaces Gradio App. The implemen
 ![SE Scifi Tags Classifier](deployment/hf_model_deployed.png)
 
 ## Web Deployment
-Deployed a Flask App that takes scifi and fantasy questions as input and shows the relevant tags associated with the question. The webapp is live [here](https://stackexchange-scifi-tags-classifier.vercel.app/).
+Developed a Flask Webapp and deployed to Vercel. It takes scifi and fantasy questions as input and classifies the relevant tags associated with the question via HuggingFace API. The webapp is live [here](https://stackexchange-scifi-tags-classifier.vercel.app/).
+
+1. The webapp takes scifi and fantasy questions as input:
+
+![Flask App Scifi Tags Classifier](deployment/web_deployed_model0.png)
+
+2. It utilizes HuggingFace API to classify the relevant tags: 
+
+![Flask App Scifi Tags Classifier](deployment/web_deployed_model1.png)
 
 ## Build from Source
 1. Clone the repo
