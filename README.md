@@ -39,7 +39,7 @@ Three different models from HuggingFace Transformers were fine-tuned using Fasta
     <td>--</td>
 </tr>
 <tr>
-    <th>F2 Score (Macro)</th>
+    <th>F1 Score (Macro)</th>
     <td>0.278</td>
     <td>0.277</td>
     <td>0.521</td>
