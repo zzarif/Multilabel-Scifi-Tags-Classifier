@@ -55,7 +55,7 @@ Three different models from HuggingFace Transformers were fine-tuned using Fasta
 </tr>
 </table>
 
-The final deployed model to Hugging Face spawas the `distilroberta-base` (quantized). The model training notebooks can be viewed [here](notebooks/).
+The model training notebooks can be viewed [here](notebooks/).
 
 ## Model Compression and ONNX Inference
 
@@ -63,7 +63,7 @@ The trained models required a storage space between **300-500MB**. So, the model
 
 ## Model Deployment
 
-`distilroberta-base` (quantized) was the compressed model that was deployed to HuggingFace Spaces Gradio App. The implementation can be found in [deployment](deployment) folder or [here](https://huggingface.co/spaces/zzarif/StackExchange-Scifi-Tags-Classifier).
+`distilroberta-base` (quantized) was the final compressed model that was deployed to HuggingFace Spaces Gradio App. The implementation can be found in [deployment](deployment) folder or [here](https://huggingface.co/spaces/zzarif/StackExchange-Scifi-Tags-Classifier).
 
 ![SE Scifi Tags Classifier](deployment/hf_model_deployed.png)
 
