@@ -17,7 +17,34 @@ Initially, there were 2095 different question tags in the dataset. After analyzi
 
 ## Model Training
 
-Three different models from HuggingFace Transformers were fine-tuned using Fastai and Blurr. All of the models achieved `99%+` accuracy. Following are the key performance metrics for each of the models respectively:
+Three different models from HuggingFace Transformers were fine-tuned using Fastai and Blurr. All of the models achieved **99%+** accuracy. Following are the key performance metrics for each of the models respectively:
+
+<table>
+<tr>
+    <th></th>
+    <th>distilroberta-base</th>
+    <th>roberta-base</th>
+    <th>bert-base-uncased</th>
+</tr>
+<tr>
+    <th>Batch Size</th>
+    <td>32</td>
+    <td>16</td>
+    <td>16</td>
+</tr>
+<tr>
+    <th>Accuracy</th>
+    <td>99.37%</td>
+    <td>99.35%</td>
+    <td>99.36%</td>
+</tr>
+</table>
+
+The model training notebooks can be viewed [here](notebooks/).
+
+## Model Compression and ONNX Inference
+
+The trained models required a storage space between **300-500MB**. So, the models were compressed using ONNX quantization which reduced its size between **80-120MB**. Following are the key performance metrics for each of the models and their compressed version respectively:
 
 <table>
 <tr>
@@ -48,28 +75,19 @@ Three different models from HuggingFace Transformers were fine-tuned using Fasta
     <td>--</td>
 </tr>
 <tr>
-    <th>Batch Size</th>
-    <td colspan="2">32</td>
-    <td colspan="2">16</td>
-    <td colspan="2">16</td>
-</tr>
-<tr>
-    <th>Accuracy</th>
-    <td colspan="2">99.37%</td>
-    <td colspan="2">99.35%</td>
-    <td colspan="2">99.36%</td>
+    <th>Size (MB)</th>
+    <td>314 MB</td>
+    <td>79 MB</td>
+    <td>476 MB</td>
+    <td>120 MB</td>
+    <td>--</td>
+    <td>--</td>
 </tr>
 </table>
 
-The model training notebooks can be viewed [here](notebooks/).
-
-## Model Compression and ONNX Inference
-
-The trained models required a storage space between **300-500MB**. So, the models were compressed using ONNX quantization which reduced its size between **80-120MB**.
-
 ## Model Deployment
 
-`distilroberta-base` (quantized) was the final compressed model that was deployed to HuggingFace Spaces Gradio App. The implementation can be found in [deployment](deployment) folder or [here](https://huggingface.co/spaces/zzarif/StackExchange-Scifi-Tags-Classifier).
+`distilroberta-base` (quantized) with **99.37%** accuracy was the final compressed model that was deployed to HuggingFace Spaces Gradio App. The implementation can be found in [deployment](deployment) folder or [here](https://huggingface.co/spaces/zzarif/StackExchange-Scifi-Tags-Classifier).
 
 ![SE Scifi Tags Classifier](deployment/hf_model_deployed.png)
 
