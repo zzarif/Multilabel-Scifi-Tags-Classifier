@@ -26,8 +26,8 @@ Three different models from HuggingFace Transformers were fine-tuned using Fasta
     <th>distilroberta-base (quantized)</th>
     <th>roberta-base</th>
     <th>roberta-base (quantized)</th>
-    <th>bert-based-uncased</th>
-    <th>bert-based-uncased (quantized)</th>
+    <th>bert-base-uncased</th>
+    <th>bert-base-uncased (quantized)</th>
 </tr>
 <tr>
     <th>F1 Score (Micro)</th>
@@ -48,10 +48,16 @@ Three different models from HuggingFace Transformers were fine-tuned using Fasta
     <td>--</td>
 </tr>
 <tr>
+    <th>Batch Size</th>
+    <td colspan="2">32</td>
+    <td colspan="2">16</td>
+    <td colspan="2">16</td>
+</tr>
+<tr>
     <th>Accuracy</th>
     <td colspan="2">99.37%</td>
     <td colspan="2">99.35%</td>
-    <td colspan="2">--</td>
+    <td colspan="2">99.36%</td>
 </tr>
 </table>
 
