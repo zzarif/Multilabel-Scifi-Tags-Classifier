@@ -4,8 +4,8 @@ Developed a Flask Webapp and deployed to Vercel. It takes scifi and fantasy ques
 
 1. The webapp takes scifi and fantasy questions as input:
 
-![Flask App Scifi Tags Classifier](/blob/main/deployment/hf_model_deployed.png)
+![Flask App Scifi Tags Classifier](deployment/web_deployed_model0.png)
 
-2. It utilizes HuggingFace API to classify the relevant tags:
+1. It utilizes HuggingFace API to classify the relevant tags:
 
-![Flask App Scifi Tags Classifier](/blob/main/deployment/hf_model_deployed.png)
+![Flask App Scifi Tags Classifier](deployment/web_deployed_model1.png)
