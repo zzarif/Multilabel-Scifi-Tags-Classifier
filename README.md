@@ -62,8 +62,8 @@ The trained models required a storage space between **300-500MB**. So, the model
     <td>0.745</td>
     <td>0.783</td>
     <td>0.782</td>
-    <td>--</td>
-    <td>--</td>
+    <td>0.715</td>
+    <td>0.717</td>
 </tr>
 <tr>
     <th>F1 Score (Macro)</th>
@@ -71,17 +71,17 @@ The trained models required a storage space between **300-500MB**. So, the model
     <td>0.277</td>
     <td>0.521</td>
     <td>0.518</td>
-    <td>--</td>
-    <td>--</td>
+    <td>0.146</td>
+    <td>0.15</td>
 </tr>
 <tr>
-    <th>Size (MB)</th>
+    <th>Size</th>
     <td>314 MB</td>
     <td>79 MB</td>
     <td>476 MB</td>
     <td>120 MB</td>
-    <td>--</td>
-    <td>--</td>
+    <td>419 MB</td>
+    <td>105 MB</td>
 </tr>
 </table>
 
