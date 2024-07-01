@@ -180,3 +180,7 @@ This method scrapes question details using `selenium` and `multiprocessing`. Thi
 6. The script waits for all processes to finish before terminating.
 
 When complete, we have to merge all the chunk specific CSV files into one [question_details.csv](data/question_details.csv) file. By utilizing `multiprocessing`, the script can scrape multiple question details simultaneously, improving the overall efficiency of the scraping process. However, this method is, often times, not reliable due to SE's screen-scraping guidelines as mentioned [here](https://meta.stackexchange.com/a/446) and poses the potential risk of IP range ban.
+
+### Contact Me
+
+Would appreciate your feedback. For any further queries please feel free to reach out to me at [zibran.zarif.amio@gmail.com](mailto:zibran.zarif.amio@gmail.com)
