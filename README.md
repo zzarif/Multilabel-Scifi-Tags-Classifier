@@ -17,28 +17,11 @@ Initially, there were 2095 different question tags in the dataset. After analyzi
 
 ## Model Training
 
-Three different models from HuggingFace Transformers were fine-tuned using Fastai and Blurr. All of the models achieved **99%+** accuracy. Following are the key performance metrics for each of the models respectively:
+Three different models from HuggingFace Transformers were fine-tuned using Fastai and Blurr. All of the models achieved **99%+** accuracy. Following are the list of models:
 
-<table>
-<tr>
-    <th></th>
-    <th>distilroberta-base</th>
-    <th>roberta-base</th>
-    <th>bert-base-uncased</th>
-</tr>
-<tr>
-    <th>Batch Size</th>
-    <td>32</td>
-    <td>16</td>
-    <td>16</td>
-</tr>
-<tr>
-    <th>Accuracy</th>
-    <td>99.37%</td>
-    <td>99.35%</td>
-    <td>99.36%</td>
-</tr>
-</table>
+1. [distilroberta-base](https://huggingface.co/distilbert/distilroberta-base)
+2. [roberta-base](https://huggingface.co/FacebookAI/roberta-base)
+3. [bert-base-uncased](https://huggingface.co/google-bert/bert-base-uncased)
 
 The model training notebooks can be viewed [here](notebooks/).
 
