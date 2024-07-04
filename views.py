@@ -11,7 +11,7 @@ def index():
         input_text = request.form['text']
         output = predict_genres(input_text)[0]
         confidence_list = output['confidences']
-        labels = [elem['label'] for elem in confidence_list if elem['confidence'] >= 0.5 ]
+        labels = [elem['label'] for elem in confidence_list]
         return render_template("result.html", input_text=input_text, labels=labels)
     else:
         return render_template("index.html")
