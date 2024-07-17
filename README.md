@@ -70,7 +70,7 @@ The trained models required a storage space between **300-500MB**. So, the model
 
 ## Model Deployment
 
-`distilroberta-base` (quantized) with **99.37%** accuracy was the final compressed model that was deployed to HuggingFace Spaces Gradio App. The implementation can be found in [deployment](deployment) folder or [here](https://huggingface.co/spaces/zzarif/StackExchange-Scifi-Tags-Classifier).
+`distilroberta-base` (quantized) with **99.37%** accuracy was the final compressed model that was deployed to HuggingFace Spaces Gradio App. The implementation can be found in [deployment](deployment) folder or [here](https://huggingface.co/spaces/zzarif/Multilabel-Scifi-Tags-Classifier).
 
 ![SE Scifi Tags Classifier](deployment/hf_model_deployed.png)
 
