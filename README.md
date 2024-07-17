@@ -76,7 +76,7 @@ The trained models required a storage space between **300-500MB**. So, the model
 
 ## Web Deployment
 
-Developed a Flask Webapp and deployed to Vercel. It takes scifi and fantasy questions as input and classifies the relevant tags associated with the question via HuggingFace API. The webapp is live [here](https://stackexchange-scifi-tags-classifier.vercel.app/).
+Developed a Flask Webapp and deployed to Vercel. It takes scifi and fantasy questions as input and classifies the relevant tags associated with the question via HuggingFace API. The webapp is live [here](https://multilabel-scifi-tags-classifier.vercel.app/).
 
 1. The webapp takes scifi and fantasy questions as input:
 
