@@ -17,7 +17,7 @@ def index():
         return render_template("index.html")
 
 def predict_genres(input_text):
-    response = requests.post("https://zzarif-stackexchange-scifi-tags-classifier.hf.space/run/predict", json={
+    response = requests.post("https://zzarif-multilabel-scifi-tags-classifier.hf.space/run/predict", json={
         "data": [
             input_text
         ]
