@@ -1,8 +1,53 @@
-# Multilabel Scifi Tags Classifier
+<h1 align="center">
+  <br>
+  <!-- <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.png" alt="Markdownify" width="200"></a>
+  <br> -->
+  Multilabel Scifi Tags Classifier
+  <br>
+</h1>
+
+<h4 align="center">Classify 160 different tags from scifi and fantasy questions.</h4>
+
+<p align="center">
+  <!-- <a href="https://badge.fury.io/js/electron-markdownify">
+    <img src="https://badge.fury.io/js/electron-markdownify.svg"
+         alt="Gitter">
+  </a>
+  <a href="https://gitter.im/amitmerchant1990/electron-markdownify"><img src="https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg"></a> -->
+  <!-- <a href="">
+      <img src="https://img.shields.io/badge/website-online-blue.svg">
+  </a> -->
+  <a href="https://github.com/zzarif/StackExchange-Scifi-Tags-Classifier">
+    <img src="https://img.shields.io/github/last-commit/zzarif/StackExchange-Scifi-Tags-Classifier">
+  </a>
+  <a href="https://www.kaggle.com/datasets/zibranzarif/multilabel-scifi-tags-classifier-dataset">
+    <img src="https://img.shields.io/badge/dataset-kaggle-blue.svg">
+  </a>
+  <a href="https://multilabel-scifi-tags-classifier.vercel.app">
+    <img src="https://img.shields.io/badge/website-online-red.svg">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/license-MIT-yellow.svg">
+  </a>
+
+</p>
+
+<p align="center">
+  <a href="#-overview">Overview</a> •
+  <a href="#-data-collection">Data Collection</a> •
+  <a href="#-data-preprocessing">Data Preprocessing</a> •
+  <a href="#-model-training">Model Training</a> •
+  <a href="#-model-compression-and-onnx-inference">Compression</a> •
+  <a href="#-model-deployment">Deployment</a> •
+  <a href="#%EF%B8%8F-build-from-source">Build from Source</a> •
+  <a href="#-contact">Contact</a>
+</p>
+
+## 📋 Overview
 
 A multi-label text classification model from data collection, model training and deployment. The model can classify **160** different types of question tags from https://scifi.stackexchange.com. The keys of `tag_types_encoded.json` shows the list of question tags.
 
-## Data Collection
+## 🗂️ Data Collection
 
 Data was collected from https://scifi.stackexchange.com/questions, a part of the Stack Exchange network of Q&A sites dedicated to science fiction and fantasy topics. Some popular question tags include Star Wars, Harry Potter, Marvel, DC Comics, Star Trek, Lord of the Rings, and Game of Thrones. The data collection was divided into two steps:
 
@@ -11,11 +56,11 @@ Data was collected from https://scifi.stackexchange.com/questions, a part of the
 
 In total, **30,000** scifi question details were collected.
 
-## Data Preprocessing
+## 🔄 Data Preprocessing
 
 Initially, there were 2095 different question tags in the dataset. After analyzing, it was found that 1935 of them were rare tags (tags that appeared in less than 0.2% of the questions). So, the rare tags were removed. As a result, a very small portion of the questions were void of any tag at all. So those question rows were removed as well. Finally, the dataset had **160** different tags across **27,493** questions.
 
-## Model Training
+## 💪 Model Training
 
 Three different models from HuggingFace Transformers were fine-tuned using Fastai and Blurr. All of the models achieved **99%+** accuracy. Following are the list of models:
 
@@ -25,7 +70,7 @@ Three different models from HuggingFace Transformers were fine-tuned using Fasta
 
 The model training notebooks can be viewed [here](notebooks/).
 
-## Model Compression and ONNX Inference
+## 📦 Model Compression and ONNX Inference
 
 The trained models required a storage space between **300-500MB**. So, the models were compressed using ONNX quantization which reduced its size between **80-120MB**. Following are the key performance metrics for each of the models and their compressed version respectively:
 
@@ -68,13 +113,13 @@ The trained models required a storage space between **300-500MB**. So, the model
 </tr>
 </table>
 
-## Model Deployment
+## 🤗 Model Deployment
 
 `distilroberta-base` (quantized) with **99.37%** accuracy was the final compressed model that was deployed to HuggingFace Spaces Gradio App. The implementation can be found in [deployment](deployment) folder or [here](https://huggingface.co/spaces/zzarif/Multilabel-Scifi-Tags-Classifier).
 
 ![SE Scifi Tags Classifier](deployment/hf_model_deployed.png)
 
-## Web Deployment
+## 🌐 Web Deployment
 
 Developed a Flask Webapp and deployed to Vercel. It takes scifi and fantasy questions as input and classifies the relevant tags associated with the question via HuggingFace API. The webapp is live [here](https://multilabel-scifi-tags-classifier.vercel.app/).
 
@@ -86,7 +131,7 @@ Developed a Flask Webapp and deployed to Vercel. It takes scifi and fantasy ques
 
 ![Flask App Scifi Tags Classifier](deployment/web_deployed_model1.png)
 
-## Build from Source
+## ⚙️ Build from Source
 
 1. Clone the repo
 
@@ -164,6 +209,7 @@ This method scrapes question details using `selenium` and `multiprocessing`. Thi
 
 When complete, we have to merge all the chunk specific CSV files into one [question_details.csv](data/question_details.csv) file. By utilizing `multiprocessing`, the script can scrape multiple question details simultaneously, improving the overall efficiency of the scraping process. However, this method is, often times, not reliable due to SE's screen-scraping guidelines as mentioned [here](https://meta.stackexchange.com/a/446) and poses the potential risk of IP range ban.
 
-### Contact Me
 
-Would appreciate your feedback. For any further queries please feel free to reach out to me at [zibran.zarif.amio@gmail.com](mailto:zibran.zarif.amio@gmail.com)
+## ✉️ Contact
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/zibran-zarif-amio-b82717263/) [![Mail](https://img.shields.io/badge/Gmail-EA4335?logo=gmail&logoColor=fff)](mailto:zibran.zarif.amio@gmail.com)
