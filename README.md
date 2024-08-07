@@ -17,8 +17,8 @@
   <!-- <a href="">
       <img src="https://img.shields.io/badge/website-online-blue.svg">
   </a> -->
-  <a href="https://github.com/zzarif/StackExchange-Scifi-Tags-Classifier">
-    <img src="https://img.shields.io/github/last-commit/zzarif/StackExchange-Scifi-Tags-Classifier">
+  <a href="https://github.com/zzarif/Multilabel-Scifi-Tags-Classifier">
+    <img src="https://img.shields.io/github/last-commit/zzarif/Multilabel-Scifi-Tags-Classifier">
   </a>
   <a href="https://www.kaggle.com/datasets/zibranzarif/multilabel-scifi-tags-classifier-dataset">
     <img src="https://img.shields.io/badge/dataset-kaggle-blue.svg">
@@ -137,7 +137,8 @@ Developed a Flask Webapp and deployed to Vercel. It takes scifi and fantasy ques
 1. Clone the repo
 
 ```bash
-git clone https://github.com/zzarif/StackExchange-Scifi-Tags-Classifier.git
+git clone https://github.com/zzarif/Multilabel-Scifi-Tags-Classifier.git
+cd Multilabel-Scifi-Tags-Classifier/
 ```
 
 2. Initialize and activate virtual environment
