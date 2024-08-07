@@ -34,13 +34,14 @@
 
 <p align="center">
   <a href="#-overview">Overview</a> •
-  <a href="#-data-collection">Data Collection</a> •
+  <a href="#%EF%B8%8F-data-collection">Data Collection</a> •
   <a href="#-data-preprocessing">Data Preprocessing</a> •
   <a href="#-model-training">Model Training</a> •
   <a href="#-model-compression-and-onnx-inference">Compression</a> •
-  <a href="#-model-deployment">Deployment</a> •
+  <a href="#-model-deployment">Model Deployment</a> •
+  <a href="#-web-deployment">Web Deployment</a> •
   <a href="#%EF%B8%8F-build-from-source">Build from Source</a> •
-  <a href="#-contact">Contact</a>
+  <a href="#%EF%B8%8F-contact">Contact</a>
 </p>
 
 ## 📋 Overview
